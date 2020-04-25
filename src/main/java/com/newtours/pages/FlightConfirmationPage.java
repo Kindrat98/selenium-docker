@@ -22,10 +22,12 @@ public class FlightConfirmationPage extends BasePage {
         super(driver);
     }
 
-    public void printConfirmation(){
+    public String getPrice(){
         wait.until(ExpectedConditions.visibilityOf(flightConfirmationHeader));
         System.out.println(flightConfirmationHeader.getText());
         System.out.println(prices.get(1).getText());
+        String price = prices.get(1).getText();
         signOffLink.click();
+        return price;
     }
 }

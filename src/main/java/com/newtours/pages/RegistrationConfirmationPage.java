@@ -9,7 +9,7 @@ public class RegistrationConfirmationPage extends BasePage{
     @FindBy(partialLinkText = "sign-in")
     private WebElement signingLink;
 
-    @FindBy(linkText = "http://newtours.demoaut.com/mercuryreservation.php")
+    @FindBy(linkText = "Flights")
     private WebElement flightsLink;
 
     public RegistrationConfirmationPage(WebDriver driver) {
