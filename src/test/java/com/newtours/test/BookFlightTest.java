@@ -21,7 +21,7 @@ public class BookFlightTest extends BaseTest {
 
     @Test
     public void registrationPageTest() {
-        RegistrationPage registrationPage = new RegistrationPage(driver);
+        RegistrationPage registrationPage = new RegistrationPage(driverThreadLocal.get());
         registrationPage.goTo();
         registrationPage.enterUserDetails("selenium", "docker");
         registrationPage.enterUserCredentials("selenium", "docker");
@@ -30,27 +30,27 @@ public class BookFlightTest extends BaseTest {
 
     @Test(dependsOnMethods = "registrationPageTest")
     public void registrationConfirmationPageTest() {
-        RegistrationConfirmationPage registrationConfirmationPage = new RegistrationConfirmationPage(driver);
+        RegistrationConfirmationPage registrationConfirmationPage = new RegistrationConfirmationPage(driverThreadLocal.get());
         registrationConfirmationPage.goToFlightDetailsLinkPage();
     }
 
     @Test(dependsOnMethods = "registrationConfirmationPageTest")
     public void flightsDetailsPage() {
-        FlightsDetailsPage flightsDetailsPage = new FlightsDetailsPage(driver);
+        FlightsDetailsPage flightsDetailsPage = new FlightsDetailsPage(driverThreadLocal.get());
         flightsDetailsPage.selectPassengers(noOfPassengers);
         flightsDetailsPage.goToFindFlightsPage();
     }
 
     @Test(dependsOnMethods = "flightsDetailsPage")
     public void findFlightPage() {
-        FindFlightPage findFlightPage = new FindFlightPage(driver);
+        FindFlightPage findFlightPage = new FindFlightPage(driverThreadLocal.get());
         findFlightPage.submitFindFlightPage();
         findFlightPage.goToFlightConfirmationPage();
     }
 
     @Test(dependsOnMethods = "findFlightPage")
     public void flightConfirmationPage() {
-        FlightConfirmationPage flightConfirmationPage = new FlightConfirmationPage(driver);
+        FlightConfirmationPage flightConfirmationPage = new FlightConfirmationPage(driverThreadLocal.get());
         String actualPrice = flightConfirmationPage.getPrice();
         Assert.assertEquals(actualPrice, expectedPrice);
     }
